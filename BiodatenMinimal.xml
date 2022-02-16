@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ComponentSpec isProfile="true" CMDVersion="1.2" CMDOriginalVersion="1.2" xsi:noNamespaceSchemaLocation="https://infra.clarin.eu/CMDI/1.x/xsd/cmd-component.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <ID>clarin.eu:cr1:p_1610707853515</ID>
+        <Name>BiodatenMinimal</Name>
+        <Description>provides a minimal set of metadata in the bioinformatics domain</Description>
+        <Status>development</Status>
+    </Header>
+    <Component name="BiodatenMinimal" CardinalityMin="1" CardinalityMax="1">
+        <Component name="Study" ComponentRef="clarin.eu:cr1:c_1610707853509" ConceptLink="https://schema.org/MedicalStudy" CardinalityMin="1" CardinalityMax="1">
+            <Documentation>A medical study in bioinformatics</Documentation>
+            <AttributeList>
+                <Attribute name="studyID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>any kind of identifier for the study</Documentation>
+                </Attribute>
+            </AttributeList>
+            <Element name="typeOfStudy" ConceptLink="http://gensc.org/ns/mixs/investigation_type" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>Investigation type</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo=" ">eukaryote</item>
+                            <item AppInfo=" ">bacteria_archaea</item>
+                            <item AppInfo=" ">plasmid</item>
+                            <item AppInfo=" ">virus</item>
+                            <item AppInfo=" ">organelle</item>
+                            <item AppInfo="">metagenome</item>
+                            <item AppInfo=" ">mimarks-survey</item>
+                            <item AppInfo=" ">mimarks-specimen</item>
+                            <item AppInfo=" ">metatranscriptome</item>
+                            <item AppInfo=" ">single amplified genome</item>
+                            <item AppInfo=" ">metagenome-assembled genome</item>
+                            <item AppInfo="">uncultivated viral genomes</item>
+                            <item AppInfo="">proteomics</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="RunID" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
+            <Element name="biologicalBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>provide information about the biological background of the study such as experiment aim and the main experimental factors and variables</Documentation>
+            </Element>
+        </Component>
+        <Component name="Experiment" ComponentRef="clarin.eu:cr1:c_1610707853510" CardinalityMin="1" CardinalityMax="unbounded">
+            <Documentation>A bioinformatics experiment that examines samples with a scientific method</Documentation>
+            <AttributeList>
+                <Attribute name="experimentID" ValueScheme="string" Required="true"/>
+            </AttributeList>
+            <Element name="typeOfMethod" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>class of method used</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo=" ">sequencing method</item>
+                            <item AppInfo=" ">isolation method</item>
+                            <item AppInfo=" ">protein analysis method</item>
+                            <item AppInfo="">particle analysis method</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="method" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>describe method in a few words. </Documentation>
+            </Element>
+            <Element name="isolationMethod" CardinalityMin="0" CardinalityMax="1">
+                <Documentation>name the isolation method used</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo=" ">flow cytometric cell sorting</item>
+                            <item AppInfo=" ">microfluidics</item>
+                            <item AppInfo=" ">lazer-tweezing</item>
+                            <item AppInfo=" ">optical manipulation</item>
+                            <item AppInfo=" ">micromanipulation</item>
+                            <item AppInfo=" ">density cushion</item>
+                            <item AppInfo=" ">density gradient</item>
+                            <item AppInfo=" ">(differential) (ultra)centrifugation</item>
+                            <item AppInfo=" ">filtration</item>
+                            <item AppInfo=" ">immunoaffinity</item>
+                            <item AppInfo=" ">size-exclusion chromatography</item>
+                            <item AppInfo="">ultrafiltration</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="proteinAnalysisMethod" CardinalityMin="0" CardinalityMax="1">
+                <Documentation>name the protein analysis method used</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo=" ">ELISA</item>
+                            <item AppInfo=" ">flow cytometry</item>
+                            <item AppInfo=" ">immun-electron microscopy</item>
+                            <item AppInfo=" ">proteomics</item>
+                            <item AppInfo="">western blot</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="particleAnalysisMethod" CardinalityMin="0" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>name the particle analysis method used</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo=" ">asymmetric flow field flow fractionation</item>
+                            <item AppInfo=" ">atomic force microscopy</item>
+                            <item AppInfo=" ">dynamic light scattering</item>
+                            <item AppInfo=" ">electron microscopy</item>
+                            <item AppInfo=" ">high resolution flow cytometry</item>
+                            <item AppInfo=" ">nanoparticle tracking analysis</item>
+                            <item>tunable resistive pulse sensing</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="URLMethodDescription" ConceptLink="https://schema.org/MedicalScholarlyArticle" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="1">
+                <Documentation>give link to scientific paper where method has been described</Documentation>
+            </Element>
+            <Component name="SequencingAnalysisType" ComponentRef="clarin.eu:cr1:c_1610707853516" CardinalityMin="1" CardinalityMax="1">
+                <Component name="metagenomics" CardinalityMin="1" CardinalityMax="1">
+                    <Element name="assembly_qual" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
+                    <Element name="assembly_name" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="assembly_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="annot" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="number_contig" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="feat_pred" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="ref_db" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="sim_search_method" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="Seq_16s_recover" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="Seq_16s_recover_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="trnas" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="trna_ext_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="compl_score" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="compl_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="compl_appr" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="contam_score" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="contam_screen_input" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="contam_screen_param" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="decontam_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="bin_param" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="bin_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="reassembly_bin" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="mag_cov_software" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                </Component>
+                <Component name="amplicon_sequencing" CardinalityMin="1" CardinalityMax="1">
+                    <Element name="nucl_acid_amp" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="target_gene" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="target_subfragment" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="pcr_primers" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="adapters" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="pcr_cond" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
+                    <Element name="chimera_check" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
+                </Component>
+            </Component>
+        </Component>
+        <Component name="Sample" ComponentRef="clarin.eu:cr1:c_1610707853511" ConceptLink="https://bioschemas.org/types/Sample" CardinalityMin="1" CardinalityMax="unbounded">
+            <Documentation>A material entity that is representative of a whole, see also http://purl.jp/bio/4/id/200906034237481745</Documentation>
+            <AttributeList>
+                <Attribute name="sampleID" ValueScheme="string" Required="true"/>
+            </AttributeList>
+            <Element name="organism" ConceptLink="http://purl.jp/bio/4/id/200906079942882108" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>name the organism used in the sample; use a controlled vocabulary by make reference to an ontology such as http://purl.obolibrary.org/obo/OBI_0100026</Documentation>
+            </Element>
+            <Element name="specimenTissueType" ConceptLink="http://purl.jp/bio/4/id/200906048950987544" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>Material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role. Please use controlled vocabulary  such as http://purl.obolibrary.org/obo/OBI_0100051</Documentation>
+            </Element>
+            <Element name="cellType" ConceptLink="http://purl.jp/bio/4/id/201106077286713294" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>name the cell type used in the sample. Use controlled vocabulary such as https://bioportal.bioontology.org/ontologies/CL or http://purl.obolibrary.org/obo/CL_0000000</Documentation>
+            </Element>
+            <Element name="proteinID" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="1">
+                <Documentation>first specify database, then specify identifier</Documentation>
+            </Element>
+            <Element name="environmentID" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
+            <Element name="sampleBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>describe the sample in plain text </Documentation>
+            </Element>
+        </Component>
+        <Component name="Environment" ComponentRef="clarin.eu:cr1:c_1610707853512" ConceptLink="http://dx.doi.org/10.1186/2041-1480-4-43" CardinalityMin="1" CardinalityMax="unbounded">
+            <Documentation>A system which has the disposition to environ one or more material entities.</Documentation>
+            <AttributeList>
+                <Attribute name="environmentID" ValueScheme="string" Required="true"/>
+            </AttributeList>
+            <Element name="environmentalPackage" ConceptLink="http://gensc.org/ns/mixs/env_package" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>Environment in which the sample was taken</Documentation>
+                <ValueScheme>
+                    <Vocabulary>
+                        <enumeration>
+                            <item AppInfo="">air</item>
+                            <item AppInfo="">built environment</item>
+                            <item AppInfo="">host-associated</item>
+                            <item AppInfo="">human-associated</item>
+                            <item AppInfo="">human-gut</item>
+                            <item AppInfo="">human-oral</item>
+                            <item AppInfo="">human-skin</item>
+                            <item AppInfo="">human-vaginal</item>
+                            <item AppInfo="">hydrocarbon resources-cores</item>
+                            <item AppInfo="">hydrocarbon resources-fluids/swabs</item>
+                            <item AppInfo="">microbial mat/biofilm</item>
+                            <item AppInfo="">miscellaneous natural or artificial environment</item>
+                            <item AppInfo="">plant-associated</item>
+                            <item AppInfo="">sediment</item>
+                            <item AppInfo="">soil</item>
+                            <item AppInfo="">wastewater/sludge</item>
+                            <item AppInfo="">water</item>
+                        </enumeration>
+                    </Vocabulary>
+                </ValueScheme>
+            </Element>
+            <Element name="broadScaleEnvironmentalContext" ConceptLink="http://purl.obolibrary.org/obo/ENVO_00000428" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>Broad ecological context your sample or specimen came from.  Please use the vocabulary defined in http://purl.obolibrary.org/obo/ENVO_00000428</Documentation>
+            </Element>
+            <Element name="environmentalMedium" ConceptLink="http://purhttp://purl.obolibrary.org/obo/ENVO_00010483" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>Environmental material or materials immediately surrounded your sample or specimen prior to sampling. Please use the vocabulary defined in  http://purl.obolibrary.org/obo/ENVO_00010483</Documentation>
+            </Element>
+        </Component>
+        <Component name="Run" ComponentRef="clarin.eu:cr1:c_1610707853513" CardinalityMin="1" CardinalityMax="unbounded">
+            <Documentation>works on either a sample and returns raw data, or works on raw data to produce results data</Documentation>
+            <AttributeList>
+                <Attribute name="runID" ValueScheme="string" Required="true">
+                    <Documentation>Identify each run with a unique identifier</Documentation>
+                </Attribute>
+            </AttributeList>
+            <Element name="sampleID_or_dataId" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>refer to the sample or (raw) data with a unique identifier</Documentation>
+            </Element>
+            <Element name="dataID" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>identify the data resulting from a RUN with a unique identifier</Documentation>
+            </Element>
+            <Element name="experimentID" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>refer to the experiment in which context the RUN took place</Documentation>
+            </Element>
+            <Element name="runBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>describe the method of sample or data analysis in a few words</Documentation>
+            </Element>
+        </Component>
+        <Component name="Data" ComponentRef="clarin.eu:cr1:c_1610707853514" CardinalityMin="1" CardinalityMax="unbounded">
+            <Documentation>data gathered in an experiment</Documentation>
+            <AttributeList>
+                <Attribute name="dataID" ValueScheme="string" Required="true">
+                    <Documentation>used to uniquely refer to data obtained in a study</Documentation>
+                </Attribute>
+            </AttributeList>
+            <Element name="dataBackground" ValueScheme="string" CardinalityMin="0" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>describe the data in a few words</Documentation>
+            </Element>
+            <Element name="dataReference" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>refer to the location where the data is stored</Documentation>
+            </Element>
+        </Component>
+    </Component>
+</ComponentSpec>
