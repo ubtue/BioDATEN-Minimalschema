@@ -9,11 +9,9 @@
     <Component name="BiodatenMinimal" CardinalityMin="1" CardinalityMax="1">
         <Component name="Study" ComponentRef="clarin.eu:cr1:c_1610707853509" ConceptLink="https://schema.org/MedicalStudy" CardinalityMin="1" CardinalityMax="1">
             <Documentation>A medical study in bioinformatics</Documentation>
-            <AttributeList>
-                <Attribute name="studyID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
-                    <Documentation>any kind of identifier for the study</Documentation>
-                </Attribute>
-            </AttributeList>
+            <Element name="biologicalBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>information about the biological background of the study such as experiment aim and the main experimental factors and variables</Documentation>
+            </Element>
             <Element name="typeOfStudy" ConceptLink="http://gensc.org/ns/mixs/investigation_type" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>Investigation type</Documentation>
                 <ValueScheme>
@@ -32,19 +30,21 @@
                             <item AppInfo=" ">metagenome-assembled genome</item>
                             <item AppInfo="">uncultivated viral genomes</item>
                             <item AppInfo="">proteomics</item>
+                            <item>other</item>
                         </enumeration>
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="RunID" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
-            <Element name="biologicalBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>provide information about the biological background of the study such as experiment aim and the main experimental factors and variables</Documentation>
+            <Element name="RunID" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>any identifier that references an experimental run</Documentation>
             </Element>
         </Component>
         <Component name="Experiment" ComponentRef="clarin.eu:cr1:c_1610707853510" CardinalityMin="1" CardinalityMax="unbounded">
             <Documentation>A bioinformatics experiment that examines samples with a scientific method</Documentation>
             <AttributeList>
-                <Attribute name="experimentID" ValueScheme="string" Required="true"/>
+                <Attribute name="experimentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>The experiment's unique identifier (used for the definition of experimental runs)</Documentation>
+                </Attribute>
             </AttributeList>
             <Element name="typeOfMethod" CardinalityMin="1" CardinalityMax="1">
                 <Documentation>class of method used</Documentation>
@@ -60,10 +60,10 @@
                 </ValueScheme>
             </Element>
             <Element name="method" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>describe method in a few words. </Documentation>
+                <Documentation>method description in a few words. </Documentation>
             </Element>
             <Element name="isolationMethod" CardinalityMin="0" CardinalityMax="1">
-                <Documentation>name the isolation method used</Documentation>
+                <Documentation>name of the isolation method used</Documentation>
                 <ValueScheme>
                     <Vocabulary>
                         <enumeration>
@@ -84,7 +84,7 @@
                 </ValueScheme>
             </Element>
             <Element name="proteinAnalysisMethod" CardinalityMin="0" CardinalityMax="1">
-                <Documentation>name the protein analysis method used</Documentation>
+                <Documentation>name of the protein analysis method used</Documentation>
                 <ValueScheme>
                     <Vocabulary>
                         <enumeration>
@@ -98,7 +98,7 @@
                 </ValueScheme>
             </Element>
             <Element name="particleAnalysisMethod" CardinalityMin="0" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
-                <Documentation>name the particle analysis method used</Documentation>
+                <Documentation>name of the particle analysis method used</Documentation>
                 <ValueScheme>
                     <Vocabulary>
                         <enumeration>
@@ -114,9 +114,10 @@
                 </ValueScheme>
             </Element>
             <Element name="URLMethodDescription" ConceptLink="https://schema.org/MedicalScholarlyArticle" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="1">
-                <Documentation>give link to scientific paper where method has been described</Documentation>
+                <Documentation>link to scientific paper where method has been described (use persistent identifiers such as DOIs, if possible)</Documentation>
             </Element>
             <Component name="SequencingAnalysisType" ComponentRef="clarin.eu:cr1:c_1610707853516" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>Information on the sequencing analysis type in bioinformatic experiments</Documentation>
                 <Component name="metagenomics" CardinalityMin="1" CardinalityMax="1">
                     <Element name="assembly_qual" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
                     <Element name="assembly_name" ValueScheme="string" CardinalityMin="1" CardinalityMax="1"/>
@@ -154,31 +155,37 @@
             </Component>
         </Component>
         <Component name="Sample" ComponentRef="clarin.eu:cr1:c_1610707853511" ConceptLink="https://bioschemas.org/types/Sample" CardinalityMin="1" CardinalityMax="unbounded">
-            <Documentation>A material entity that is representative of a whole, see also http://purl.jp/bio/4/id/200906034237481745</Documentation>
+            <Documentation>Sample: a material entity that is representative of a whole, see also http://purl.jp/bio/4/id/200906034237481745</Documentation>
             <AttributeList>
-                <Attribute name="sampleID" ValueScheme="string" Required="true"/>
+                <Attribute name="sampleID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>reference to your sample (used for the definition of runs)</Documentation>
+                </Attribute>
             </AttributeList>
             <Element name="organism" ConceptLink="http://purl.jp/bio/4/id/200906079942882108" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>name the organism used in the sample; use a controlled vocabulary by make reference to an ontology such as http://purl.obolibrary.org/obo/OBI_0100026</Documentation>
+                <Documentation>name of the organism used in the sample; use a controlled vocabulary by make reference to an ontology such as http://purl.obolibrary.org/obo/OBI_0100026</Documentation>
             </Element>
             <Element name="specimenTissueType" ConceptLink="http://purl.jp/bio/4/id/200906048950987544" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>Material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role. Please use controlled vocabulary  such as http://purl.obolibrary.org/obo/OBI_0100051</Documentation>
+                <Documentation>name of the material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role. Please use controlled vocabulary  such as http://purl.obolibrary.org/obo/OBI_0100051</Documentation>
             </Element>
             <Element name="cellType" ConceptLink="http://purl.jp/bio/4/id/201106077286713294" ValueScheme="anyURI" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>name the cell type used in the sample. Use controlled vocabulary such as https://bioportal.bioontology.org/ontologies/CL or http://purl.obolibrary.org/obo/CL_0000000</Documentation>
+                <Documentation>name of the cell type used in the sample. Use controlled vocabulary such as https://bioportal.bioontology.org/ontologies/CL or http://purl.obolibrary.org/obo/CL_0000000</Documentation>
             </Element>
             <Element name="proteinID" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="1">
-                <Documentation>first specify database, then specify identifier</Documentation>
+                <Documentation>name of the protein, possibly by using a controlled term from a protein database</Documentation>
             </Element>
-            <Element name="environmentID" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1"/>
+            <Element name="environmentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>identifier of  the environment (used by the specification of samples)</Documentation>
+            </Element>
             <Element name="sampleBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>describe the sample in plain text </Documentation>
+                <Documentation>description of the sample</Documentation>
             </Element>
         </Component>
         <Component name="Environment" ComponentRef="clarin.eu:cr1:c_1610707853512" ConceptLink="http://dx.doi.org/10.1186/2041-1480-4-43" CardinalityMin="1" CardinalityMax="unbounded">
-            <Documentation>A system which has the disposition to environ one or more material entities.</Documentation>
+            <Documentation>Environment: a system which has the disposition to environ one or more material entities.</Documentation>
             <AttributeList>
-                <Attribute name="environmentID" ValueScheme="string" Required="true"/>
+                <Attribute name="environmentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>identifier of the environment (used by the specification of samples)</Documentation>
+                </Attribute>
             </AttributeList>
             <Element name="environmentalPackage" ConceptLink="http://gensc.org/ns/mixs/env_package" CardinalityMin="1" CardinalityMax="1" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>Environment in which the sample was taken</Documentation>
@@ -214,37 +221,37 @@
             </Element>
         </Component>
         <Component name="Run" ComponentRef="clarin.eu:cr1:c_1610707853513" CardinalityMin="1" CardinalityMax="unbounded">
-            <Documentation>works on either a sample and returns raw data, or works on raw data to produce results data</Documentation>
+            <Documentation>An experimental run works on either a sample and returns raw data, or works on raw data to produce results data</Documentation>
             <AttributeList>
-                <Attribute name="runID" ValueScheme="string" Required="true">
-                    <Documentation>Identify each run with a unique identifier</Documentation>
+                <Attribute name="runID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>unique identifier for each run</Documentation>
                 </Attribute>
             </AttributeList>
-            <Element name="sampleID_or_dataId" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
-                <Documentation>refer to the sample or (raw) data with a unique identifier</Documentation>
+            <Element name="sampleID_or_dataId" ConceptLink="https://schema.org/identifier" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>reference to the sample or (raw) data with a unique identifier</Documentation>
             </Element>
-            <Element name="dataID" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
-                <Documentation>identify the data resulting from a RUN with a unique identifier</Documentation>
+            <Element name="dataID" ConceptLink="https://schema.org/identifier" ValueScheme="string" CardinalityMin="1" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>reference to  the data resulting from a RUN with a unique identifier</Documentation>
             </Element>
-            <Element name="experimentID" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>refer to the experiment in which context the RUN took place</Documentation>
+            <Element name="experimentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>reference to the experiment in which context the RUN took place</Documentation>
             </Element>
             <Element name="runBackground" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>describe the method of sample or data analysis in a few words</Documentation>
+                <Documentation>description of  the experimental run  in a few words</Documentation>
             </Element>
         </Component>
         <Component name="Data" ComponentRef="clarin.eu:cr1:c_1610707853514" CardinalityMin="1" CardinalityMax="unbounded">
             <Documentation>data gathered in an experiment</Documentation>
             <AttributeList>
-                <Attribute name="dataID" ValueScheme="string" Required="true">
-                    <Documentation>used to uniquely refer to data obtained in a study</Documentation>
+                <Attribute name="dataID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                    <Documentation>identifier to uniquely refer to data obtained in a study</Documentation>
                 </Attribute>
             </AttributeList>
             <Element name="dataBackground" ValueScheme="string" CardinalityMin="0" CardinalityMax="unbounded" cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
-                <Documentation>describe the data in a few words</Documentation>
+                <Documentation>description of the data in a few words</Documentation>
             </Element>
             <Element name="dataReference" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>refer to the location where the data is stored</Documentation>
+                <Documentation>location where the data is stored</Documentation>
             </Element>
         </Component>
     </Component>

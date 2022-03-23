@@ -3,14 +3,23 @@
 **This is work in progress**
 
 
-Das *BioDATEN Metadaten-Minmalschema* besteht aus folgenden Komponenten:
+The *BioDATEN Metadata-schema* is work in progress. The design rational can be
+found in the doc directory.
 
-- **Art der Untersuchung:**
+- **Construction:**
 
-    Def. en: Investigation Type
+The schema is being constructed with the help of the CLARIN Component Registry (CCR),
+see https://catalog.clarin.eu/ds/ComponentRegistry/#/browser.
 
-    Def. de: Art der Untersuchung
+At the time of writing, it is a private schema *BioDatenMinimal* being defined
+by the user *nalida*. It consists of the main components *Study*, *Experiment*,
+*Sample*, *Environment*, *Run*, and *Data*.
 
-    Ref. in MIxS: https://terms.tdwg.org/wiki/mixs:investigation_type 
+When the XSD is exported from the CCR, we manually remove occurrences of
 
-    Vokabular: "eukaryote, bacteria_archaea, plasmid, virus, organelle, metagenome,mimarks-survey, mimarks-specimen, metatranscriptome, single amplified genome, metagenome-assembled genome, uncultivated viral genomes" + "Proteomics"
+- xml:base
+- cmd:ref attributes.
+
+Note that components have an attribute cmd:ComponentId which is a value that is
+always fixed to a component's identifier. This is needed for the validation of
+the schema. It should not be offered to users filling out the schema.

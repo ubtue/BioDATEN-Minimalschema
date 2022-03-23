@@ -25,6 +25,7 @@
             <xs:enumeration value="metagenome-assembled genome" cmd:label=" "/>
             <xs:enumeration value="uncultivated viral genomes" cmd:label=""/>
             <xs:enumeration value="proteomics" cmd:label=""/>
+            <xs:enumeration value="other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="complextype-typeOfStudy-clarin.eu.cr1.c_1610707853509">
@@ -136,6 +137,12 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
+                            <xs:element name="biologicalBackground" minOccurs="1" maxOccurs="1"
+                                type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>information about the biological background of the study such as experiment aim and the main experimental factors and variables</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
                             <xs:element name="typeOfStudy"
                                 cmd:ConceptLink="http://gensc.org/ns/mixs/investigation_type"
                                 minOccurs="1" maxOccurs="1"
@@ -147,22 +154,12 @@
                             </xs:element>
                             <xs:element name="RunID" minOccurs="1" maxOccurs="unbounded"
                                 type="xs:string" cue:DisplayPriority="1">
-                                <xs:annotation/>
-                            </xs:element>
-                            <xs:element name="biologicalBackground" minOccurs="1" maxOccurs="1"
-                                type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>provide information about the biological background of the study such as experiment aim and the main experimental factors and variables</xs:documentation>
+                                    <xs:documentation>any identifier that references an experimental run</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853509"/>
-                        <xs:attribute name="studyID" use="required"
-                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
-                            <xs:annotation>
-                                <xs:documentation>any kind of identifier for the study</xs:documentation>
-                            </xs:annotation>
-                        </xs:attribute>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="Experiment" minOccurs="1" maxOccurs="unbounded">
@@ -179,37 +176,39 @@
                             </xs:element>
                             <xs:element name="method" minOccurs="1" maxOccurs="1" type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>describe method in a few words. </xs:documentation>
+                                    <xs:documentation>method description in a few words. </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="isolationMethod" minOccurs="0" maxOccurs="1"
                                 type="cmdp:complextype-isolationMethod-clarin.eu.cr1.c_1610707853510">
                                 <xs:annotation>
-                                    <xs:documentation>name the isolation method used</xs:documentation>
+                                    <xs:documentation>name of the isolation method used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="proteinAnalysisMethod" minOccurs="0" maxOccurs="1"
                                 type="cmdp:complextype-proteinAnalysisMethod-clarin.eu.cr1.c_1610707853510">
                                 <xs:annotation>
-                                    <xs:documentation>name the protein analysis method used</xs:documentation>
+                                    <xs:documentation>name of the protein analysis method used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="particleAnalysisMethod" minOccurs="0" maxOccurs="1"
                                 type="cmdp:complextype-particleAnalysisMethod-clarin.eu.cr1.c_1610707853510"
                                 cue:DisplayPriority="1">
                                 <xs:annotation>
-                                    <xs:documentation>name the particle analysis method used</xs:documentation>
+                                    <xs:documentation>name of the particle analysis method used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="URLMethodDescription"
                                 cmd:ConceptLink="https://schema.org/MedicalScholarlyArticle"
                                 minOccurs="0" maxOccurs="1" type="xs:anyURI">
                                 <xs:annotation>
-                                    <xs:documentation>give link to scientific paper where method has been described</xs:documentation>
+                                    <xs:documentation>link to scientific paper where method has been described (use persistent identifiers such as DOIs, if possible)</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="SequencingAnalysisType" minOccurs="1" maxOccurs="1">
-                                <xs:annotation/>
+                                <xs:annotation>
+                                    <xs:documentation>Information on the sequencing analysis type in bioinformatic experiments</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="metagenomics" minOccurs="1" maxOccurs="1">
@@ -356,15 +355,18 @@
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853510"/>
-                        <xs:attribute name="experimentID" use="required" type="xs:string">
-                            <xs:annotation/>
+                        <xs:attribute name="experimentID" use="required"
+                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>The experiment's unique identifier (used for the definition of experimental runs)</xs:documentation>
+                            </xs:annotation>
                         </xs:attribute>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="Sample" cmd:ConceptLink="https://bioschemas.org/types/Sample"
                     minOccurs="1" maxOccurs="unbounded">
                     <xs:annotation>
-                        <xs:documentation>A material entity that is representative of a whole, see also http://purl.jp/bio/4/id/200906034237481745</xs:documentation>
+                        <xs:documentation>Sample: a material entity that is representative of a whole, see also http://purl.jp/bio/4/id/200906034237481745</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
@@ -372,43 +374,49 @@
                                 cmd:ConceptLink="http://purl.jp/bio/4/id/200906079942882108"
                                 minOccurs="1" maxOccurs="1" type="xs:anyURI">
                                 <xs:annotation>
-                                    <xs:documentation>name the organism used in the sample; use a controlled vocabulary by make reference to an ontology such as http://purl.obolibrary.org/obo/OBI_0100026</xs:documentation>
+                                    <xs:documentation>name of the organism used in the sample; use a controlled vocabulary by make reference to an ontology such as http://purl.obolibrary.org/obo/OBI_0100026</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="specimenTissueType"
                                 cmd:ConceptLink="http://purl.jp/bio/4/id/200906048950987544"
                                 minOccurs="1" maxOccurs="1" type="xs:anyURI">
                                 <xs:annotation>
-                                    <xs:documentation>Material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role. Please use controlled vocabulary  such as http://purl.obolibrary.org/obo/OBI_0100051</xs:documentation>
+                                    <xs:documentation>name of the material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role. Please use controlled vocabulary  such as http://purl.obolibrary.org/obo/OBI_0100051</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="cellType"
                                 cmd:ConceptLink="http://purl.jp/bio/4/id/201106077286713294"
                                 minOccurs="1" maxOccurs="1" type="xs:anyURI">
                                 <xs:annotation>
-                                    <xs:documentation>name the cell type used in the sample. Use controlled vocabulary such as https://bioportal.bioontology.org/ontologies/CL or http://purl.obolibrary.org/obo/CL_0000000</xs:documentation>
+                                    <xs:documentation>name of the cell type used in the sample. Use controlled vocabulary such as https://bioportal.bioontology.org/ontologies/CL or http://purl.obolibrary.org/obo/CL_0000000</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="proteinID" minOccurs="0" maxOccurs="1"
                                 type="xs:anyURI">
                                 <xs:annotation>
-                                    <xs:documentation>first specify database, then specify identifier</xs:documentation>
+                                    <xs:documentation>name of the protein, possibly by using a controlled term from a protein database</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="environmentID" minOccurs="1" maxOccurs="1"
-                                type="xs:string" cue:DisplayPriority="1">
-                                <xs:annotation/>
+                            <xs:element name="environmentID"
+                                cmd:ConceptLink="https://schema.org/identifier" minOccurs="1"
+                                maxOccurs="1" type="xs:string" cue:DisplayPriority="1">
+                                <xs:annotation>
+                                    <xs:documentation>identifier of  the environment (used by the specification of samples)</xs:documentation>
+                                </xs:annotation>
                             </xs:element>
                             <xs:element name="sampleBackground" minOccurs="1" maxOccurs="1"
                                 type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>describe the sample in plain text </xs:documentation>
+                                    <xs:documentation>description of the sample</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853511"/>
-                        <xs:attribute name="sampleID" use="required" type="xs:string">
-                            <xs:annotation/>
+                        <xs:attribute name="sampleID" use="required"
+                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>reference to your sample (used for the definition of runs)</xs:documentation>
+                            </xs:annotation>
                         </xs:attribute>
                     </xs:complexType>
                 </xs:element>
@@ -416,7 +424,7 @@
                     cmd:ConceptLink="http://dx.doi.org/10.1186/2041-1480-4-43" minOccurs="1"
                     maxOccurs="unbounded">
                     <xs:annotation>
-                        <xs:documentation>A system which has the disposition to environ one or more material entities.</xs:documentation>
+                        <xs:documentation>Environment: a system which has the disposition to environ one or more material entities.</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
@@ -445,46 +453,53 @@
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853512"/>
-                        <xs:attribute name="environmentID" use="required" type="xs:string">
-                            <xs:annotation/>
+                        <xs:attribute name="environmentID" use="required"
+                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>identifier of the environment (used by the specification of samples)</xs:documentation>
+                            </xs:annotation>
                         </xs:attribute>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="Run" minOccurs="1" maxOccurs="unbounded">
                     <xs:annotation>
-                        <xs:documentation>works on either a sample and returns raw data, or works on raw data to produce results data</xs:documentation>
+                        <xs:documentation>An experimental run works on either a sample and returns raw data, or works on raw data to produce results data</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="sampleID_or_dataId" minOccurs="1"
+                            <xs:element name="sampleID_or_dataId"
+                                cmd:ConceptLink="https://schema.org/identifier" minOccurs="1"
                                 maxOccurs="unbounded" type="xs:string" cue:DisplayPriority="1">
                                 <xs:annotation>
-                                    <xs:documentation>refer to the sample or (raw) data with a unique identifier</xs:documentation>
+                                    <xs:documentation>reference to the sample or (raw) data with a unique identifier</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="dataID" minOccurs="1" maxOccurs="unbounded"
-                                type="xs:string" cue:DisplayPriority="1">
+                            <xs:element name="dataID"
+                                cmd:ConceptLink="https://schema.org/identifier" minOccurs="1"
+                                maxOccurs="unbounded" type="xs:string" cue:DisplayPriority="1">
                                 <xs:annotation>
-                                    <xs:documentation>identify the data resulting from a RUN with a unique identifier</xs:documentation>
+                                    <xs:documentation>reference to  the data resulting from a RUN with a unique identifier</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="experimentID" minOccurs="1" maxOccurs="1"
-                                type="xs:string">
+                            <xs:element name="experimentID"
+                                cmd:ConceptLink="https://schema.org/identifier" minOccurs="1"
+                                maxOccurs="1" type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>refer to the experiment in which context the RUN took place</xs:documentation>
+                                    <xs:documentation>reference to the experiment in which context the RUN took place</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="runBackground" minOccurs="1" maxOccurs="1"
                                 type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>describe the method of sample or data analysis in a few words</xs:documentation>
+                                    <xs:documentation>description of  the experimental run  in a few words</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853513"/>
-                        <xs:attribute name="runID" use="required" type="xs:string">
+                        <xs:attribute name="runID" use="required"
+                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
                             <xs:annotation>
-                                <xs:documentation>Identify each run with a unique identifier</xs:documentation>
+                                <xs:documentation>unique identifier for each run</xs:documentation>
                             </xs:annotation>
                         </xs:attribute>
                     </xs:complexType>
@@ -498,20 +513,21 @@
                             <xs:element name="dataBackground" minOccurs="0" maxOccurs="unbounded"
                                 type="xs:string" cue:DisplayPriority="1">
                                 <xs:annotation>
-                                    <xs:documentation>describe the data in a few words</xs:documentation>
+                                    <xs:documentation>description of the data in a few words</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="dataReference" minOccurs="1" maxOccurs="1"
                                 type="xs:string">
                                 <xs:annotation>
-                                    <xs:documentation>refer to the location where the data is stored</xs:documentation>
+                                    <xs:documentation>location where the data is stored</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute ref="cmd:ComponentId" fixed="clarin.eu:cr1:c_1610707853514"/>
-                        <xs:attribute name="dataID" use="required" type="xs:string">
+                        <xs:attribute name="dataID" use="required"
+                            cmd:ConceptLink="https://schema.org/identifier" type="xs:string">
                             <xs:annotation>
-                                <xs:documentation>used to uniquely refer to data obtained in a study</xs:documentation>
+                                <xs:documentation>identifier to uniquely refer to data obtained in a study</xs:documentation>
                             </xs:annotation>
                         </xs:attribute>
                     </xs:complexType>
