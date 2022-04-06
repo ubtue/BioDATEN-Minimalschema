@@ -42,7 +42,7 @@
         <Component name="Experiment" ComponentRef="clarin.eu:cr1:c_1610707853510" CardinalityMin="1" CardinalityMax="unbounded">
             <Documentation>A bioinformatics experiment that examines samples with a scientific method</Documentation>
             <AttributeList>
-                <Attribute name="experimentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true">
+                <Attribute name="experimentID" ConceptLink="https://schema.org/identifier" ValueScheme="string" Required="true" cue:depends_on="typeOfMethod:other--method" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                     <Documentation>The experiment's unique identifier (used for the definition of experimental runs)</Documentation>
                 </Attribute>
             </AttributeList>
@@ -55,12 +55,13 @@
                             <item AppInfo=" ">isolation method</item>
                             <item AppInfo=" ">protein analysis method</item>
                             <item AppInfo="">particle analysis method</item>
+                            <item AppInfo="Please describe your method below">other</item>
                         </enumeration>
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="method" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
-                <Documentation>method description in a few words. </Documentation>
+            <Element name="method" ValueScheme="string" CardinalityMin="0" CardinalityMax="1">
+                <Documentation>if typeOfMethod is other,  description of method in a few words. </Documentation>
             </Element>
             <Element name="isolationMethod" CardinalityMin="0" CardinalityMax="1">
                 <Documentation>name of the isolation method used</Documentation>
