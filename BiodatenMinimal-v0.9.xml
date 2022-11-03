@@ -191,6 +191,9 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
+            <Element name="otherMethod" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
+                <Documentation>description of method (other option)</Documentation>
+            </Element>
             <Element name="URLMethodDescription" ConceptLink="https://schema.org/MedicalScholarlyArticle" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="unbounded">
                 <Documentation>link to scientific paper where method has been described (use persistent identifiers such as DOIs, if possible)</Documentation>
             </Element>
@@ -203,7 +206,7 @@
             <Element name="descriptionStudiedObject" ValueScheme="string" CardinalityMin="1" CardinalityMax="1">
                 <Documentation>description of studied object</Documentation>
             </Element>
-            <Element name="typeStudiedObject" CardinalityMin="1" CardinalityMax="1">
+            <Element name="typeStudiedObject" CardinalityMin="1" CardinalityMax="1" cue:dependsOn_valueSelection="'Organism (i.e., eukaryota, bacteria, archaea)'--organism;'Organism (i.e., eukaryota, bacteria, archaea)'--cellType" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>name type of studied object</Documentation>
                 <ValueScheme>
                     <Vocabulary>
