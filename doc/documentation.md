@@ -33,8 +33,7 @@ The current way of describing a dataset with the BioDATEN minimal schema is by u
 All attributes in the components “Studied Object” and “Method” are mandatory unless they are explicitly labelled as optional. The use of the suggested ontologies is strongly recommended, but not mandatory, as they may not apply in some cases.
 
 
-INSERT IMAGE 230130_BioDATEN_metadata_schema_components_1.jpg
-
+![schema](./schema.jpg)
 
 # Studied Object component
 The Studied Object component describes the material entity from which the data was derived. It will be linked to the method used on it, (Method component) yielding an experimental run (Run component). After the description of the studied object as free text, it must be decided whether it is an organism or a non-organism ("type of the studied object/sample"). In case of organism, the “name of the organism of the studied object/sample” is to be provided, based on a suggested ontology. In the same vein, the “name of the cell type used in the sample” is to be provided, based on two suggested ontologies. If “Non-Organism” was chosen as “type of the studied object/sample” the two aforementioned elements are not relevant. “Additional information” on the type of the Studied Object may be provided optionally as free text. The “name of the material (structure, substance, device) removed from a source (patient, donor, physical location, product) OR a material entity that has the specimen role” has to be provided based on a suggested ontology. Finally, information on the “measurement target (e.g., protein, gene, compound)” is required as free text.
@@ -46,7 +45,7 @@ The Method component describes the measurement conditions under which the experi
 # Run component
 The Run component links together instances of the Studied Object and the Method component. It consists of two elements that each stores the identifier of one Studied Object and one Method, which are part of the same dataset metadata description.
 
-INSERT IMAGE 230130_BioDATEN_metadata_schema_components_2.jpg
+![schema](./fileRun.jpg)
 
 # File component
 
