@@ -96,7 +96,7 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="sequencingMethodOther" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="sequencingMethodOther" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the sequencing method (other option)</Documentation>
                 <ValueScheme>
                     <pattern>Please specify the sequencing method</pattern>
@@ -129,7 +129,7 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="analyticalMethodOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="analyticalMethodOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the analytical method (other option)</Documentation>
             </Element>
             <Element name="particleAnalysisMethod" CardinalityMin="0" CardinalityMax="1" cue:DisplayPriority="1" cue:dependsOn_valueSelection="Other--particleAnalysisMethodOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
@@ -150,10 +150,10 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="particleAnalysisMethodOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="particleAnalysisMethodOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the particle analysis method (other option)</Documentation>
             </Element>
-            <Element name="protein-DNA-RNA-Interaction" CardinalityMin="1" CardinalityMax="1" cue:dependsOn_valueSelection="Other--protein-DNA-RNA-InteractionOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="protein-DNA-RNA-Interaction" CardinalityMin="0" CardinalityMax="1" cue:dependsOn_valueSelection="Other--protein-DNA-RNA-InteractionOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>type of the Protein-DNA/RNA Interaction method used</Documentation>
                 <ValueScheme>
                     <Vocabulary>
@@ -180,7 +180,7 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="protein-DNA-RNA-InteractionOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="protein-DNA-RNA-InteractionOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the protein-DNA-RNA-Interaction method (other option)</Documentation>
             </Element>
             <Element name="protein-protein-interaction" CardinalityMin="0" CardinalityMax="1" cue:dependsOn_valueSelection="Other--protein-protein-interactionOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
@@ -208,7 +208,7 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="protein-protein-interactionOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="protein-protein-interactionOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the protein-protein-interaction method (other option)</Documentation>
             </Element>
             <Element name="protein-lipid-interaction" CardinalityMin="0" CardinalityMax="1" cue:dependsOn_valueSelection="Other--protein-lipid-interactionOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
@@ -225,10 +225,10 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="protein-lipid-interactionOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="protein-lipid-interactionOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the protein-lipid-interaction method (other option)</Documentation>
             </Element>
-            <Element name="bioinformaticMethod" CardinalityMin="1" CardinalityMax="1" cue:dependsOn_valueSelection="Other--bioinformaticMethodOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="bioinformaticMethod" CardinalityMin="0" CardinalityMax="1" cue:dependsOn_valueSelection="Other--bioinformaticMethodOther;" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <ValueScheme>
                     <Vocabulary>
                         <enumeration>
@@ -247,10 +247,10 @@
                     </Vocabulary>
                 </ValueScheme>
             </Element>
-            <Element name="bioinformaticMethodOther" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="bioinformaticMethodOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the bioinformatics method (other option)</Documentation>
             </Element>
-            <Element name="otherMethod" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="otherMethod" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>name of method ("Other" option)</Documentation>
             </Element>
             <Element name="URLMethodDescription" ConceptLink="https://schema.org/ScholarlyArticle" ValueScheme="anyURI" CardinalityMin="0" CardinalityMax="unbounded" cue:display_placeholder="DOI, URL etc." xmlns:cue="http://www.clarin.eu/cmd/cues/1">

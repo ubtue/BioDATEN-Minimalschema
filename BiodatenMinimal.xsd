@@ -369,7 +369,7 @@
                                         used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="sequencingMethodOther" minOccurs="1" maxOccurs="1"
+                            <xs:element name="sequencingMethodOther" minOccurs="0" maxOccurs="1"
                                 type="cmdp:complextype-sequencingMethodOther-clarin.eu.cr1.c_1659015263820"
                                 cue:display_placeholder="add free text">
                                 <xs:annotation>
@@ -385,7 +385,7 @@
                                         used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="analyticalMethodOther" minOccurs="1" maxOccurs="1"
+                            <xs:element name="analyticalMethodOther" minOccurs="0" maxOccurs="1"
                                 type="xs:string" cue:display_placeholder="add free text">
                                 <xs:annotation>
                                     <xs:documentation>description of the analytical method (other
@@ -401,7 +401,7 @@
                                         used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="particleAnalysisMethodOther" minOccurs="1"
+                            <xs:element name="particleAnalysisMethodOther" minOccurs="0"
                                 maxOccurs="1" type="xs:string"
                                 cue:display_placeholder="add free text">
                                 <xs:annotation>
@@ -409,7 +409,7 @@
                                         (other option)</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="protein-DNA-RNA-Interaction" minOccurs="1"
+                            <xs:element name="protein-DNA-RNA-Interaction" minOccurs="0"
                                 maxOccurs="1"
                                 type="cmdp:complextype-protein-DNA-RNA-Interaction-clarin.eu.cr1.c_1659015263820"
                                 cue:dependsOn_valueSelection="Other--protein-DNA-RNA-InteractionOther;">
@@ -418,7 +418,7 @@
                                         used</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="protein-DNA-RNA-InteractionOther" minOccurs="1"
+                            <xs:element name="protein-DNA-RNA-InteractionOther" minOccurs="0"
                                 maxOccurs="1" type="xs:string"
                                 cue:display_placeholder="add free text">
                                 <xs:annotation>
@@ -432,7 +432,7 @@
                                 cue:dependsOn_valueSelection="Other--protein-protein-interactionOther;">
                                 <xs:annotation/>
                             </xs:element>
-                            <xs:element name="protein-protein-interactionOther" minOccurs="1"
+                            <xs:element name="protein-protein-interactionOther" minOccurs="0"
                                 maxOccurs="1" type="xs:string"
                                 cue:display_placeholder="add free text">
                                 <xs:annotation>
@@ -445,7 +445,7 @@
                                 cue:dependsOn_valueSelection="Other--protein-lipid-interactionOther;">
                                 <xs:annotation/>
                             </xs:element>
-                            <xs:element name="protein-lipid-interactionOther" minOccurs="1"
+                            <xs:element name="protein-lipid-interactionOther" minOccurs="0"
                                 maxOccurs="1" type="xs:string"
                                 cue:display_placeholder="add free text">
                                 <xs:annotation>
@@ -453,19 +453,19 @@
                                         method (other option)</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="bioinformaticMethod" minOccurs="1" maxOccurs="1"
+                            <xs:element name="bioinformaticMethod" minOccurs="0" maxOccurs="1"
                                 type="cmdp:complextype-bioinformaticMethod-clarin.eu.cr1.c_1659015263820"
                                 cue:dependsOn_valueSelection="Other--bioinformaticMethodOther;">
                                 <xs:annotation/>
                             </xs:element>
-                            <xs:element name="bioinformaticMethodOther" minOccurs="1" maxOccurs="1"
+                            <xs:element name="bioinformaticMethodOther" minOccurs="0" maxOccurs="1"
                                 type="xs:string" cue:display_placeholder="add free text">
                                 <xs:annotation>
                                     <xs:documentation>description of the bioinformatics method
                                         (other option)</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="otherMethod" minOccurs="1" maxOccurs="1"
+                            <xs:element name="otherMethod" minOccurs="0" maxOccurs="1"
                                 type="xs:string" cue:display_placeholder="add free text">
                                 <xs:annotation>
                                     <xs:documentation>name of method ("Other"
