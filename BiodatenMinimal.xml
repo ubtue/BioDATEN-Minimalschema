@@ -42,6 +42,9 @@
             <Element name="measurementTarget" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="e.g., name of gene, protein, compound, etc." cue:DisplayPriority="1" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>measurement target of the studied object/sample</Documentation>
             </Element>
+            <Element name="databaseLink" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="e.g., ENA number, URL" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>Link to a database where information on the measurement target is stored.</Documentation>
+            </Element>
         </Component>
         <Component name="Method" ComponentRef="clarin.eu:cr1:c_1659015263820" CardinalityMin="1" CardinalityMax="unbounded">
             <Documentation>Method; measurement conditions</Documentation>
@@ -54,7 +57,7 @@
             <Element name="samplePreparationOrProcessing" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="e.g., nucleic acid extraction" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>specify how the studied object/sample was prepared or processed, e.g., extraction, purification, concentration, derivation; use controlled vocabulary at https://ontobee.org/ontology/OBI?iri=http://purl.obolibrary.org/obo/OBI_0000094</Documentation>
             </Element>
-            <Element name="typeOfMethod" CardinalityMin="1" CardinalityMax="1" cue:dependsOn_valueSelection="'Sequencing method'--sequencingMethod;'Analytical method'--analyticalMethod;'Protein-protein interaction'--protein-protein-interaction;'Protein-DNA/RNA interaction'--protein-DNA-RNA-Interaction;'Protein-lipid interaction'--protein-lipid-interaction;'Particle analysis method'--particleAnalysisMethod;'Bioinformatic method'--bioinformaticMethod;Other--otherMethod" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+            <Element name="typeOfMethod" CardinalityMin="1" CardinalityMax="1" cue:dependsOn_valueSelection="'Sequencing method'--sequencingMethod;'Analytical method'--analyticalMethod;'Protein-protein interaction'--protein-protein-interaction;'Protein-DNA/RNA interaction'--protein-DNA-RNA-Interaction;'Protein-lipid interaction'--protein-lipid-interaction;'Particle analysis method'--particleAnalysisMethod;'Bioinformatic method'--bioinformaticMethod;'Bioinformatic method'--bioinformaticsMethodDatabasePipeline;Other--otherMethod" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>class of method used</Documentation>
                 <ValueScheme>
                     <Vocabulary>
@@ -249,6 +252,9 @@
             </Element>
             <Element name="bioinformaticMethodOther" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>description of the bioinformatics method (other option)</Documentation>
+            </Element>
+            <Element name="bioinformaticsMethodDatabasePipeline" ValueScheme="string" CardinalityMin="1" CardinalityMax="1" cue:display_placeholder="e.g., ftp://ftp.ncbi.nlm.nih.gov/blast/db/16S_ribosomal_RNA.tar.gz" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
+                <Documentation>information on (or link to) used reference database, version of bioinformatics pipeline</Documentation>
             </Element>
             <Element name="otherMethod" ValueScheme="string" CardinalityMin="0" CardinalityMax="1" cue:display_placeholder="add free text" xmlns:cue="http://www.clarin.eu/cmd/cues/1">
                 <Documentation>name of method ("Other" option)</Documentation>
